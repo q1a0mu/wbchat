@@ -411,12 +411,15 @@ function pushMessage(args) {
 	// Message container
 	var messageEl = document.createElement('div');
 
-	if (
-		typeof (myNick) === 'string' && (
-			args.text.match(new RegExp('@' + myNick.split('#')[0] + '\\b', "gi")) ||
-			((args.type === "whisper" || args.type === "invite") && args.from)
-		)
-	) {
+	// if (
+	// 	typeof (myNick) === 'string' && (
+	// 		args.text.match(new RegExp('@' + myNick.split('#')[0] + '\\b', "gi")) ||
+	// 		((args.type === "whisper" || args.type === "invite") && args.from)
+	// 	)
+	// ) {
+	// 	notify(args);
+	// }
+	if (hidden && args.nick !== myNick.split('#')[0]) {
 		notify(args);
 	}
 
@@ -541,6 +544,18 @@ function updateTitle() {
 
 $('#footer').onclick = function () {
 	$('#chatinput').focus();
+}
+
+//get now datetime(yyyy-MM-dd HH:mm:ss) function
+function getNow() {
+	var now = new Date();
+	var year = now.getFullYear();
+	var month = now.getMonth() + 1;
+	var date = now.getDate();
+	var hour = now.getHours();
+	var minute = now.getMinutes();
+	var second = now.getSeconds();
+	return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
 }
 
 $('#chatinput').onkeydown = function (e) {
@@ -904,3 +919,10 @@ if (myChannel == '') {
 } else {
 	join(myChannel);
 }
+
+// document visibility change
+let hidden = false;
+document.addEventListener("visibilitychange", function () {
+	hidden = document.visibilityState === 'hidden';
+	console.log("document.visibilityState changed to: " + document.visibilityState);
+});
