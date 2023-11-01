@@ -6,7 +6,7 @@
  * and will not actively be updated.
  *
 */
-
+let hidden = false;
 //select "chatinput" on "/"
 document.addEventListener("keydown", e => {
     if (e.key === '/' && document.getElementById("chatinput") != document.activeElement) {
@@ -467,6 +467,10 @@ function pushMessage(args) {
 	var textEl = document.createElement('p');
 	textEl.classList.add('text');
 	textEl.innerHTML = md.render(args.text);
+	textEl.onclick = function () {
+		insertAtCursor("> 回复：" + args.text + "  \n\n");
+		$('#chatinput').focus();
+	}
 
 	messageEl.appendChild(textEl);
 
@@ -921,7 +925,7 @@ if (myChannel == '') {
 }
 
 // document visibility change
-let hidden = false;
+
 document.addEventListener("visibilitychange", function () {
 	hidden = document.visibilityState === 'hidden';
 	console.log("document.visibilityState changed to: " + document.visibilityState);

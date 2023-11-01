@@ -102,6 +102,7 @@ ul li {
 }
 .text p {
   margin: 0;
+  cursor: pointer;
 }
 #footer {
   position: fixed;
