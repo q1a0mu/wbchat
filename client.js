@@ -466,6 +466,10 @@ function pushMessage(args) {
 	// Text
 	var textEl = document.createElement('p');
 	textEl.classList.add('text');
+	if(isAllEmoji(args.text))
+	{
+		textEl.classList.add('text-emoji');
+	}
 	textEl.innerHTML = md.render(args.text);
 	textEl.onclick = function () {
 		insertAtCursor("> 回复：" + args.text + "  \n\n");
@@ -930,3 +934,13 @@ document.addEventListener("visibilitychange", function () {
 	hidden = document.visibilityState === 'hidden';
 	console.log("document.visibilityState changed to: " + document.visibilityState);
 });
+
+function isAllEmoji(str) {
+    return Array.from(str).every(char => /\p{Emoji_Presentation}/gu.test(char));
+}
+
+function openEmojiDialog()
+{
+	//open windows emoji dialog, key: win + .
+	//$('#chatinput').focus();
+}
