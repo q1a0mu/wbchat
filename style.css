@@ -250,3 +250,8 @@ ul ul, ol ol {
     border: none;
   }
 }
+
+#emoji-dialog .hidden
+{
+  display: none;
+}

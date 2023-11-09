@@ -932,15 +932,34 @@ if (myChannel == '') {
 
 document.addEventListener("visibilitychange", function () {
 	hidden = document.visibilityState === 'hidden';
-	console.log("document.visibilityState changed to: " + document.visibilityState);
+	// console.log("document.visibilityState changed to: " + document.visibilityState);
+});
+
+document.querySelector('emoji-picker').addEventListener('emoji-click', event => {
+	insertAtCursor(event.detail.unicode);
+	hideEmojiDialog();
+	$('#chatinput').focus();
+});
+
+document.addEventListener('click', function (event) {
+	if (!document.querySelector('emoji-picker').classList.contains("hidden")) {
+		if (!event.target.closest('emoji-picker')) {
+			document.querySelector('emoji-picker').classList.add("hidden");
+		}
+	}
 });
 
 function isAllEmoji(str) {
     return Array.from(str).every(char => /\p{Emoji_Presentation}/gu.test(char));
 }
 
-function openEmojiDialog()
+function openEmojiDialog(event)
 {
-	//open windows emoji dialog, key: win + .
-	//$('#chatinput').focus();
+	document.querySelector('emoji-picker').classList.remove("hidden");
+	event.stopPropagation();
+}
+
+function hideEmojiDialog()
+{
+	document.querySelector('emoji-picker').classList.add("hidden");
 }

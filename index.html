@@ -17,6 +17,7 @@
   <script src="vendor/hljs/highlight.min.js"></script>
   <link id="highlight-link" rel="stylesheet" href="vendor/hljs/styles/hybrid.min.css">
   <script src="vendor/remarkable/remarkable.min.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 </head>
 
 <body>
@@ -28,7 +29,8 @@
   </article>
   <footer id="footer">
     <div class="container">
-      <!-- <button onclick="openEmojiDialog()">Emoji</button> -->
+      <emoji-picker id="emoji-picker" class="hidden"></emoji-picker>
+      <button onclick="openEmojiDialog(event)">Emoji</button>
       <form id="chatform" class="message">
         <textarea id="chatinput" type="text" autocomplete="off" autofocus></textarea>
       </form>
