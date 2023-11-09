@@ -251,7 +251,7 @@ ul ul, ol ol {
   }
 }
 
-#emoji-dialog .hidden
-{
-  display: none;
+.emoji-dialog{
+  position: absolute;
+  top: -379px;
 }
