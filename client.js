@@ -270,7 +270,7 @@ function spawnNotification(title, body) {
 		// If it's okay let's create a notification
 		var options = {
 			body: body,
-			icon: "/favicon-96x96.png"
+			// icon: "/favicon-96x96.png"
 		};
 		var n = new Notification(title, options);
 	}
@@ -292,7 +292,8 @@ function spawnNotification(title, body) {
 function notify(args) {
 	// Spawn notification if enabled
 	if (notifySwitch.checked) {
-		spawnNotification("?" + myChannel + "  —  " + args.nick, args.text)
+		// spawnNotification("?" + myChannel + "  —  " + args.nick, args.text)
+		spawnNotification('New Reminder', '')
 	}
 
 	// Play sound if enabled
